@@ -1,0 +1,92 @@
+.app {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 97vh;
+}
+
+.header {
+  background: #b8a89f;
+  text-align: center;
+  padding: 1rem;
+}
+
+.content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.class-list {
+  display: inline-block;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.1rem;
+}
+
+.class-item {
+  background: #ddd;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.class-item:hover {
+  background: #ccc;
+}
+
+.rating-panel {
+  background: #e0e0e0;
+  padding: 2rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.panel-content {
+  width: 100%;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.stars {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.star {
+  cursor: pointer;
+  color: #aaa;
+}
+.star.active {
+  color: gold;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  margin-bottom: 0.5rem;
+  resize: none;
+}
+
+button {
+  background: #b8a89f;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background: #a8978f;
+}
+
+.panel-placeholder {
+  color: #555;
+  text-align: center;
+  width: 100%;
+}
