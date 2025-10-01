@@ -76,36 +76,31 @@ function selectSubject(subject) {
 }
 
 async function submitReview() {
-  if (!selectedSubject.value) {
-    alert("Palun vali õppeaine!");
-    return;
-  }
+  if (!selectedSubject.value) { alert('Vali õppeaine'); return; }
+
+  const payload = {
+    subject: selectedSubject.value.name,
+    studentname: studentname.value,
+    rating: rating.value,
+    feedback: feedback.value
+  };
 
   try {
-    const response = await fetch("http://localhost:3000/api/hinnangud", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        subject: selectedSubject.value.name,
-        studentname: studentname.value,
-        rating: rating.value,
-        feedback: feedback.value
-      })
+    const res = await fetch('http://localhost:3000/api/hinnangud', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     });
-
-    if (response.ok) {
-      alert("Hinnang salvestatud!");
-      // puhasta vorm
-      rating.value = 0
-      studentname.value = ''
-      feedback.value = ''
+    if (res.ok) {
+      alert('Hinnang salvestatud!');
+      rating.value = 0; studentname.value = ''; feedback.value = '';
     } else {
-      const text = await response.text()
-      alert("Viga: " + text)
+      const txt = await res.text();
+      alert('Viga: ' + txt);
     }
   } catch (err) {
-    console.error(err)
-    alert("Serveriga ei saa ühendust.")
+    console.error(err);
+    alert('Serveriga ei saa ühendust');
   }
 }
 </script>
