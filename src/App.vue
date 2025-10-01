@@ -75,10 +75,37 @@ function selectSubject(subject) {
   feedback.value = ''
 }
 
-//SEND TO DATABASE
-function submitReview() {
-  alert(
-    `Õppeaine: ${selectedSubject.value.name}\nHinnang: ${rating.value}\nÕpilase nimi: ${studentname.value}\nTagasiside: ${feedback.value}`,
-  )
+async function submitReview() {
+  if (!selectedSubject.value) {
+    alert("Palun vali õppeaine!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/api/hinnangud", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subject: selectedSubject.value.name,
+        studentname: studentname.value,
+        rating: rating.value,
+        feedback: feedback.value
+      })
+    });
+
+    if (response.ok) {
+      alert("Hinnang salvestatud!");
+      // puhasta vorm
+      rating.value = 0
+      studentname.value = ''
+      feedback.value = ''
+    } else {
+      const text = await response.text()
+      alert("Viga: " + text)
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Serveriga ei saa ühendust.")
+  }
 }
 </script>
