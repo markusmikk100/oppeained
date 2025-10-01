@@ -46,12 +46,21 @@
 import { ref } from 'vue'
 
 const subjects = ref([
-  { name: 'Matemaatika' },
-  { name: 'Eesti keel' },
-  { name: 'Füüsika' },
-  { name: 'Keemia' },
-  { name: 'Ajalugu' },
-  { name: 'Bioloogia' },
+  { name: 'Matemaatika | Hanna Toom' },
+  { name: 'Eesti keel | Terie Varul' },
+  { name: 'Füüsika | Julia Kähri' },
+  { name: 'Keemia | Liivia Agu' },
+  { name: 'Ajalugu | Hilja Kattagu' },
+  { name: 'Bioloogia | Liivia Agu' },
+  { name: 'Riistvaralähedane programmeerimine | Md Raknuzzaman' },
+  { name: 'Individuaalne valikaine (Arvutimängude loomine) | Kevin Otto Koit' },
+  { name: 'Tarkvaraarenduse meetodid | Henry Edward Aimre' },
+  { name: 'Blockchain | Aleksandr Kormiltsõn' },
+  { name: 'Testimise alused ja testimisplaan | Tatjana Kirotar' },
+  { name: 'Hajusrakenduste alused II | Timo Triisa' },
+  { name: 'Serveripoolsed tehnoloogiad veebirakenduste loomiseks | Kaspar Martin Suursalu' },
+  { name: 'Küberturbe alused | Anu Baum' },
+  { name: 'Projekt I | Henry Edward Aimre , Kuldar Kaasik , Timo Triisa' },
 ])
 
 const selectedSubject = ref(null)
