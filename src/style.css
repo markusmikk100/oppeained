@@ -44,6 +44,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  height: 30rem;
 }
 
 .panel-content {
@@ -89,4 +90,9 @@ button:hover {
   color: #555;
   text-align: center;
   width: 100%;
+}
+
+.class-list {
+  height: 34rem;
+  overflow-y: auto;
 }
