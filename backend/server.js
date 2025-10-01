@@ -1,33 +1,30 @@
 import express from 'express';
 import cors from 'cors';
-import pool from './db.js';  // <-- sinu andmebaasi ühendus
+import pool from './db.js';  // db.js peab olema samas kaustas
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
-app.use(express.json()); // et POST päringud saaksid body lugeda
+// Middleware
+app.use(cors());            // lubab cross-origin päringuid
+app.use(express.json());    // et saaks POST päringuid JSON-iga
 
-// Kontrolli, kas DB töötab
-app.get('/api/test', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT NOW() as now');
-    res.json(rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('DB viga');
-  }
+// Test endpoint
+app.get('/', (req, res) => {
+  res.send('Server töötab!');
 });
 
-// POST – hinnangu salvestamine
+// POST endpoint hinnangute salvestamiseks
 app.post('/api/hinnangud', async (req, res) => {
   try {
     const { subject, studentname, rating, feedback } = req.body;
 
+    // Põhiväljade kontroll
     if (!subject || !studentname || !rating) {
-      return res.status(400).send('Puuduvad väljad');
+      return res.status(400).send('Puuduvad vajalikud väljad');
     }
 
+    // INSERT prepared statementiga (turvaline)
     const sql = 'INSERT INTO hinnangud (subject, studentname, rating, feedback) VALUES (?, ?, ?, ?)';
     await pool.query(sql, [subject, studentname, rating, feedback]);
 
@@ -38,17 +35,18 @@ app.post('/api/hinnangud', async (req, res) => {
   }
 });
 
-// GET – kõigi hinnangute kuvamine
+// Võimalus küsida kõiki hinnanguid (näiteks front-endi kuvamiseks)
 app.get('/api/hinnangud', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM hinnangud ORDER BY created_at DESC');
     res.json(rows);
   } catch (err) {
-    console.error('Päringu viga:', err);
+    console.error('Viga andmete lugemisel:', err);
     res.status(500).send('Serveri viga');
   }
 });
 
+// Serveri käivitamine
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
