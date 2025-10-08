@@ -86,7 +86,7 @@ async function submitReview() {
   };
 
   try {
-    const res = await fetch('http://localhost:3000/api/hinnangud', {
+    const res = await fetch('http://10.142.142.65:3000/api/hinnangud', {  // <--- use your server IP here
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
