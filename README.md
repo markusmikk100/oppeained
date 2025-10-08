@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### For backend run
+
+```sh
+node server.js
+```
