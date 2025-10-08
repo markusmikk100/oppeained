@@ -76,31 +76,36 @@ function selectSubject(subject) {
 }
 
 async function submitReview() {
-  if (!selectedSubject.value) { alert('Vali õppeaine'); return; }
+  if (!selectedSubject.value) {
+    alert('Vali õppeaine')
+    return
+  }
 
   const payload = {
     subject: selectedSubject.value.name,
     studentname: studentname.value,
     rating: rating.value,
-    feedback: feedback.value
-  };
+    feedback: feedback.value,
+  }
 
   try {
-    const res = await fetch('http://10.142.142.65:3000/api/hinnangud', {  // <--- use your server IP here
+    const res = await fetch('http://localhost:3000/api/hinnangud', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+      body: JSON.stringify(payload),
+    })
     if (res.ok) {
-      alert('Hinnang salvestatud!');
-      rating.value = 0; studentname.value = ''; feedback.value = '';
+      alert('Hinnang salvestatud!')
+      rating.value = 0
+      studentname.value = ''
+      feedback.value = ''
     } else {
-      const txt = await res.text();
-      alert('Viga: ' + txt);
+      const txt = await res.text()
+      alert('Viga: ' + txt)
     }
   } catch (err) {
-    console.error(err);
-    alert('Serveriga ei saa ühendust');
+    console.error(err)
+    alert('Serveriga ei saa ühendust')
   }
 }
 </script>
