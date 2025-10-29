@@ -4,14 +4,14 @@ Lihtne juhend projekti käivitamiseks (frontend + backend + MySQL).
 
 ---
 
-## ⚙️ 1. Andmebaasi seadistamine
+## 1. Andmebaasi seadistamine
 
 1. Ava **MySQL Workbench**.
 2. Kasuta juba olemasolevat andmebaasi `oppeained`.
 
 ---
 
-## 🚀 2. Backend (server)
+## 2. Backend (server)
 
 1. Ava terminalis backend’i kaust.
 
@@ -33,16 +33,16 @@ Server running at http://localhost:3000
 
 ---
 
-## 💻 3. Frontend (Vue 3 / Vite)
+## 3. Frontend (Vue 3 / Vite)
 
-1. Ava terminalis frontend’i kaust (kus on `package.json`).
+1. Ava terminalis frontend’i kaust (MAIN).
 2. Paigalda sõltuvused:
 
 ```bash
 npm install
 ```
 
-3. Käivita arendusrežiimis:
+3. Käivita:
 
 ```bash
 npm run dev
