@@ -47,3 +47,11 @@ npm install
 ```bash
 npm run dev
 ```
+## 4. Dashboard
+
+- Kuvab kõik õppeained, nende kommentaarid ja keskmised hinded.
+- Avamiseks kliki **Dashboard** nuppu Home lehel.
+- Uued hinnangud Home lehelt uuendavad Dashboardi automaatselt.
+- Andmed laaditakse backend’ist endpoint’ist: `GET /api/hinnangud`.
+- Iga kaart sisaldab: **Id, Subject, StudentName, Rating, Feedback**.
+- Dashboardi all näed iga õppeaine **keskmist hinnet**.
